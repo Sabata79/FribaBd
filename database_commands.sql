@@ -1,11 +1,10 @@
--- Active: 1670086568018@@127.0.0.1@3306
+-- Active: 1670222989497@@127.0.0.1@3306
 -- Table `productgroups`
 
 CREATE TABLE productgroups (
-        `group_id` smallint(6),
+        `group_id` INTEGER PRIMARY KEY AUTOINCREMENT,
         `disctype` varchar(20),
-        `status` VARCHAR(10),
-        CONSTRAINT productgroups_pk PRIMARY KEY (group_id)
+        `status` VARCHAR(10)
     );
 
 INSERT INTO productgroups (`group_id`, `disctype`, `status`) 
@@ -16,13 +15,11 @@ VALUES  (1, 'Putter','active'),
 
 -- Table `product`
 CREATE TABLE product (
-        `product_id` INTEGER,
+        `product_id` INTEGER PRIMARY KEY AUTOINCREMENT,
         `group_id` smallint(6) NOT NULL,
         `product_name` varchar(50) NOT NULL,
         `price` decimal(5, 2),
         `status` VARCHAR(10),
-        CONSTRAINT product_pk PRIMARY KEY(product_id),
-        CONSTRAINT product_name_un UNIQUE(product_name),
         CONSTRAINT group_id_fk FOREIGN KEY(group_id)
             REFERENCES productgroups (group_id)
     );
@@ -55,26 +52,24 @@ VALUES  (1,1,'Innova Halo Star Invader','35','active'),
 
 -- Table `customer`
 CREATE TABLE customer (
-        `customer_id` VARCHAR(6),
+        `customer_id` INTEGER PRIMARY KEY AUTOINCREMENT,
         `fullname` varchar(30) NOT NULL,
         `email` varchar(50),
         `pw` varchar(50),
         `status` VARCHAR(10),
-        CONSTRAINT customer_pk PRIMARY KEY(customer_id),
-        CONSTRAINT fullname_un UNIQUE(fullname)
+        CONSTRAINT fullname_un UNIQUE(fullname, email)
     );
 
 INSERT INTO customer (`customer_id`, `fullname`, `email`, `pw`, `status`)
 VALUES  (1,'Harri Hauiskääntö','Harrillaonhabaa@paljon.fi','xxx','active'), 
         (2,'Sakari Kaulaote','SakariKaula@ote.com','2xxx','active');
 
--- Table `order`
+-- Table `orders`
 CREATE TABLE orders (
-        `order_id` INTEGER NOT NULL,
+        `order_id` INTEGER PRIMARY KEY AUTOINCREMENT,
         `customer_id` VARCHAR(6),
-        `date` datetime,
+        `date` datetime default current_timestamp,
         `status` VARCHAR(10),
-        CONSTRAINT orders_pk PRIMARY KEY (order_id),
         CONSTRAINT orders_customer_fk FOREIGN KEY (customer_id)
             REFERENCES customer (customer_id)
     );
@@ -84,14 +79,13 @@ VALUES(101,1,'2022-12-4','active');
 -- Table`backlog`
 
 CREATE TABLE backlog (
-        `order_id` INTEGER NOT NULL,
-        `backlog_id` smallint(6) NOT NULL,
+        `backlog_id` INTEGER PRIMARY KEY AUTOINCREMENT,
+        `order_id` INTEGER,
         `product_id` INTEGER,
         `pcs` INTEGER,
         `status` VARCHAR(10),
-        CONSTRAINT backlog_pk PRIMARY KEY (order_id, backlog_id),
-        CONSTRAINT backlog_product_fk FOREIGN KEY (product_id)
-            REFERENCES product (product_id)
+        CONSTRAINT backlog_product_fk FOREIGN KEY (product_id, order_id)
+            REFERENCES product (product_id, order_id)
     );
 INSERT INTO backlog (`order_id`, `backlog_id`, `product_id`, `pcs`, `status` )
 VALUES(101,1,12,50,'active');

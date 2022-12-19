@@ -1,5 +1,4 @@
 <?php
-require_once('./order.php');
 
 function selectAsJson(object $db, string $sql): void
 {

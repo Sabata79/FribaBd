@@ -391,7 +391,30 @@
 			"name": "Add order",
 			"request": {
 				"method": "POST",
-				"header": []
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "fullname",
+							"value": "",
+							"description": "Order whit registered user fullname",
+							"type": "text"
+						},
+						{
+							"key": "product_name",
+							"value": "",
+							"description": "product name",
+							"type": "text"
+						},
+						{
+							"key": "pcs",
+							"value": "",
+							"description": "quantity of products",
+							"type": "text"
+						}
+					]
+				}
 			},
 			"response": []
 		}

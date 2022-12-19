@@ -1,4 +1,5 @@
 <?php
+require_once('./order.php');
 
 function selectAsJson(object $db, string $sql): void
 {
@@ -22,33 +23,25 @@ function returnError(PDOException $pdoex): void
   exit;
 }
 
-function addOrder($customer_id, $pid, $pcs)
+function addOrder($db,$customer_id, $pid, $pcs)
 {
-
   try {
-    $db = createSqliteConnection("./Friba.db");
-    //$db->beginTransaction();
 
     $sql = "INSERT INTO orders (customer_id, status) VALUES ($customer_id, 'active')";
 
     $statement = $db->prepare($sql);
-    $statement->execute();     //PDOStatement OK  ///TÄHÄN PYSÄHTYY DEBUGGAUS JOS TRANSAKTIO ON POIS , Ei erroreita!
+    $statement->execute();
 
-    $rownumber = array('order_id' => $db->lastInsertId());  //HAKEE TIEDON ARRAYNA 
-    $order_id = $rownumber['order_id'];                //OTETAAN ARVO ARRAYSTA                 
+    $rownumber = array('order_id' => $db->lastInsertId());
+    $order_id = $rownumber['order_id'];          
   
      $sql = "INSERT INTO backlog (order_id, product_id, pcs, status)
     VALUES($order_id, $pid, $pcs,'active')";
 
     $statement = $db->prepare($sql);
-    $statement->execute();            //PDOStatement OK 
+    $statement->execute();          
 
   } catch (PDOException $pdoex) {
-   // $db->rollBack();
     returnError($pdoex);
   }
 }
-
-//EI vaikutusta vaikka otetaan arvot vastaan integerinä (int)
-//Jos poistetaan transaktio niin debuggaus pysähtyy!
-//Vuotaa kun Suomen jalkapallomaajoukkueen puolustus.. Transaction päällä :(

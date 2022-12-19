@@ -3,25 +3,26 @@
 require('./dbconnection.php');
 require('./functions.php');
 
- $db = Null;
-/*
+$db = Null;
+
 if (!isset($_POST['fullname']) || !isset($_POST['product_name']) || !isset($_POST['pcs'])) {
   http_response_code(404);
   echo 'Missing parameters';
   return;
-}*/
+}
   
-  $uname= 'Mikko Mallikas';
+  $uname= 'Harri Hauiskääntö';
   $pname ='Innova Halo Star Invader';
-  $pcs = 10;
+  $pcs = 5;
   
-/*
+
   $uname = filter_var($_POST['fullname'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
   $pname = filter_var($_POST['product_name'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-  $pcs = filter_var($_POST['pcs'], FILTER_SANITIZE_NUMBER_INT); */
+  $pcs = filter_var($_POST['pcs'], FILTER_SANITIZE_NUMBER_INT); 
 
 
   $db = createSqliteConnection("./Friba.db");
+  
   $sql = "SELECT customer_id FROM customer WHERE fullname= '$uname'";
   $statement = $db->prepare($sql);
   $statement->execute();
@@ -34,7 +35,7 @@ if (!isset($_POST['fullname']) || !isset($_POST['product_name']) || !isset($_POS
   
   $pid =(int)$statement->fetchColumn(); //OK
 
-  addOrder($customer_id, $pid, $pcs);
+  addOrder($db,$customer_id, $pid, $pcs);
 
   $_SESSION['username'] = $uname;
 

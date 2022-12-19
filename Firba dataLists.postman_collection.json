@@ -8,17 +8,25 @@
 	"item": [
 		{
 			"name": "products whit productgroups",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
 				"url": {
-					"raw": "http://localhost:3001/productsList.php",
+					"raw": "http://localhost:3001/FribaBd/productsList.php",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3001",
 					"path": [
+						"FribaBd",
 						"productsList.php"
 					]
 				}
@@ -31,17 +39,34 @@
 				"method": "POST",
 				"header": [],
 				"body": {
-					"mode": "raw",
-					"raw": ""
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "Fullname",
+							"value": "Simo Hillo",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "oikeeihminen@kangasalla.fi",
+							"type": "text"
+						},
+						{
+							"key": "pw",
+							"value": "Hillo",
+							"type": "text"
+						}
+					]
 				},
 				"url": {
-					"raw": "http://localhost:3001/rest_register.php",
+					"raw": "http://localhost:3001/FribaBd/rest_register.php",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3001",
 					"path": [
+						"FribaBd",
 						"rest_register.php"
 					]
 				}
@@ -72,13 +97,14 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3001/rest_login.php",
+					"raw": "http://localhost:3001/FribaBd/rest_login.php",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3001",
 					"path": [
+						"FribaBd",
 						"rest_login.php"
 					]
 				}
@@ -91,13 +117,14 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3001/logout.php",
+					"raw": "http://localhost:3001/FribaBd/logout.php",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3001",
 					"path": [
+						"FribaBd",
 						"logout.php"
 					]
 				}
@@ -121,13 +148,14 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3001/search.php",
+					"raw": "http://localhost:3001/FribaBd/search.php",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3001",
 					"path": [
+						"FribaBd",
 						"search.php"
 					]
 				}
@@ -136,9 +164,16 @@
 		},
 		{
 			"name": "Orders backlog",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
 				"url": {
 					"raw": "http://localhost:3001/backlogList.php",
 					"protocol": "http",
@@ -155,17 +190,25 @@
 		},
 		{
 			"name": "order",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
 				"url": {
-					"raw": "http://localhost:3001/orderList.php",
+					"raw": "http://localhost:3001/FribaBd/orderList.php",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3001",
 					"path": [
+						"FribaBd",
 						"orderList.php"
 					]
 				}
@@ -182,19 +225,19 @@
 					"formdata": [
 						{
 							"key": "group_id",
-							"value": "2",
+							"value": "1",
 							"description": "productgroup number (1.putter,2.midway,3.Driver,4.LongRange)",
 							"type": "text"
 						},
 						{
 							"key": "product_name",
-							"value": "Keskilmatkan heittäjän speciaali",
+							"value": "Kinnusen karjaisu",
 							"description": "product full name",
 							"type": "text"
 						},
 						{
 							"key": "price",
-							"value": "45",
+							"value": "50",
 							"description": "product price",
 							"type": "text"
 						},
@@ -207,13 +250,14 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3001/productAdd.php",
+					"raw": "http://localhost:3001/FribaBd/productAdd.php",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3001",
 					"path": [
+						"FribaBd",
 						"productAdd.php"
 					]
 				}
@@ -230,26 +274,27 @@
 					"formdata": [
 						{
 							"key": "disctype",
-							"value": "universal",
+							"value": "Base",
 							"description": "category name",
 							"type": "text"
 						},
 						{
 							"key": "status",
-							"value": "disabled",
+							"value": "active",
 							"description": "set category status (active/disabled)",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3001/productgroupAdd.php",
+					"raw": "http://localhost:3001/FribaBd/productgroupAdd.php",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3001",
 					"path": [
+						"FribaBd",
 						"productgroupAdd.php"
 					]
 				}
@@ -273,20 +318,20 @@
 						{
 							"key": "disctype",
 							"value": "",
-							"description": "disabling group whit groptype name",
-							"type": "text",
-							"disabled": true
+							"description": "disabling group whit grouptype name",
+							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3001/productgroupRemove.php",
+					"raw": "http://localhost:3001/FribaBd/productgroupRemove.php",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3001",
 					"path": [
+						"FribaBd",
 						"productgroupRemove.php"
 					]
 				}
@@ -303,7 +348,7 @@
 					"formdata": [
 						{
 							"key": "product_id",
-							"value": "",
+							"value": "1",
 							"description": "disabling product whit product ID",
 							"type": "text"
 						},
@@ -316,13 +361,14 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3001/productRemove.php",
+					"raw": "http://localhost:3001/FribaBd/productRemove.php",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3001",
 					"path": [
+						"FribaBd",
 						"productRemove.php"
 					]
 				}
@@ -331,17 +377,25 @@
 		},
 		{
 			"name": "registered customers",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
 				"url": {
-					"raw": "http://localhost:3001/userList.php",
+					"raw": "http://localhost:3001/FribaBd/userList.php",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3001",
 					"path": [
+						"FribaBd",
 						"userList.php"
 					]
 				}
@@ -363,25 +417,21 @@
 							"key": "",
 							"value": "",
 							"description": "Active shows as json (for practice)",
-							"type": "text"
+							"type": "text",
+							"disabled": true
 						}
 					]
 				},
 				"url": {
-					"raw": "http://localhost:3001/rest_user_status.php?",
+					"raw": "http://localhost:3001/FribaBd/rest_user_status.php",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3001",
 					"path": [
+						"FribaBd",
 						"rest_user_status.php"
-					],
-					"query": [
-						{
-							"key": "",
-							"value": null
-						}
 					]
 				}
 			},
@@ -413,6 +463,18 @@
 							"description": "quantity of products",
 							"type": "text"
 						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3001/FribaBd/order.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"FribaBd",
+						"order.php"
 					]
 				}
 			},
